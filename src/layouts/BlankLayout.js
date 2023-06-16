@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import React from "react";
 import Logo from "../components/Logo";
-import styled from "@emotion/styles";
+import styled from "@emotion/styled";
 import { Outlet } from "react-router-dom";
 
 const HeaderStyle = styled("header")(({ theme }) => ({

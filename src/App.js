@@ -1,14 +1,18 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
-import MainLayout from "./layouts/MainLayout";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./routes";
+import { AuthProvider } from "./contexts/AuthContext";
+import ThemeProvider from "./contexts/ThemeProvider";
 
 function App() {
   return (
-    <>
-      <Box>
-        <MainLayout />
-      </Box>
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <Router />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
