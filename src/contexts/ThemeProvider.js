@@ -5,20 +5,20 @@ import {
 } from "@mui/material/styles";
 
 const PRIMARY = {
-  lighter: "#FFD07F",
-  light: "#FDA65D",
-  main: "#FF8243",
-  dark: "#E26A2C",
-  darker: "#cc571f",
-  contrastText: "#FFF",
+  lighter: "#20262E",
+  light: "#20262E",
+  main: "#000000",
+  dark: "#20262E",
+  darker: "#20262E",
+  contrastText: "#FB2576",
 };
 const SECONDARY = {
-  lighter: "#D6E4FF",
-  light: "#84A9FF",
-  main: "#3366FF",
-  dark: "#1939B7",
-  darker: "#091A7A",
-  contrastText: "#FFF",
+  lighter: "#20262E",
+  light: "#20262E",
+  main: "#FB2576",
+  dark: "#20262E",
+  darker: "#20262E",
+  contrastText: "#20262E",
 };
 const SUCCESS = {
   lighter: "#E9FCD4",
@@ -36,7 +36,7 @@ function ThemeProvider({ children }) {
       secondary: SECONDARY,
       success: SUCCESS,
     },
-    shape: { borderRadius: 8 },
+    shape: { borderRadius: 2 },
   };
 
   const theme = createTheme(themeOptions);
