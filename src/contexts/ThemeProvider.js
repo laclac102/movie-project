@@ -13,12 +13,12 @@ const PRIMARY = {
   contrastText: "#FB2576",
 };
 const SECONDARY = {
-  lighter: "#20262E",
-  light: "#20262E",
+  lighter: "#270082",
+  light: "#270082",
   main: "#FB2576",
-  dark: "#20262E",
-  darker: "#20262E",
-  contrastText: "#20262E",
+  dark: "#270082",
+  darker: "#270082",
+  contrastText: "#FDEFF4",
 };
 const SUCCESS = {
   lighter: "#E9FCD4",
@@ -37,6 +37,19 @@ function ThemeProvider({ children }) {
       success: SUCCESS,
     },
     shape: { borderRadius: 2 },
+    typography: {
+      h3: {
+        fontSize: "1.2rem",
+        "@media (min-width:600px)": {
+          fontSize: "1.5rem",
+        },
+        breakpoints: {
+          up: {
+            fontSize: "2.rem",
+          },
+        },
+      },
+    },
   };
 
   const theme = createTheme(themeOptions);

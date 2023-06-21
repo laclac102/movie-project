@@ -1,6 +1,14 @@
-/* #root {
+#root {
   background-color: #111111ff;
-} */
+  --swiper-theme-color: #FB2576;
+  --swiper-navigation-size: 35px;
+  min-height: 100vh;
+  overflow: scroll;
+}
+.hide {
+  display: none;
+  transition: transform 500ms;
+}
 .netflix-container .netflix-items {
   align-items: center;
 }
@@ -8,16 +16,31 @@
   flex: 1 1 0px;
   transition: transform 500ms;
   display: block;
+  position: relative;
 }
 .netflix-container .netflix-items:focus,
 .netflix-container .netflix-items:hover{
-  transform: scale(1.5);
+  transform: scale(1.25);
   z-index: 1;
 }
-
-/* .netflix-items ~ .netflix-items{
-  transform: translateX(25%);
-} */
-body {
-  overflow: hidden;
+.netflix-container .netflix-items:hover + .hide {
+  display: block;
+  transform: scale(1.25);
+  width: "100%";
+  top: 0;
+}
+.swiper {
+    padding: "10px";
+    max-width: "100%";
+    min-height: "200px";
+    background-color: "#111111ff";
+}
+.genres {
+  background: rgb(121,78,97);
+  background: radial-gradient(circle, rgba(121,78,97,1) 0%, rgba(59,64,156,1) 100%);
+}
+@media only screen and (max-width: 600px) {
+  #root {
+    --swiper-navigation-size: 25px;
+  }
 }

@@ -10,6 +10,10 @@ function FTextField({ name, ...other }) {
       control={control}
       render={({ field, fieldState: { error } }) => (
         <TextField
+          variant="filled"
+          color="secondary"
+          sx={{ input: { color: "white" } }}
+          focused
           {...field}
           fullWidth
           error={!!error}

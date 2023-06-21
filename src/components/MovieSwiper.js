@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../api/config";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,64 +11,63 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import styled from "@emotion/styled";
 
 const style = {
   swiper: {
-    padding: "10px",
     maxWidth: "100%",
     minHeight: "150px",
+    backgroundColor: "#111111ff",
   },
   title: {
     position: "absolute",
-    bottom: 0,
-    left: 0,
     width: "100%",
-    // bgcolor: "rgba(0, 0, 0, 0.54)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     color: "white",
-    padding: "10px",
+    zIndex: 2,
   },
 };
-function PopularMovie({ items }) {
+function MovieSwiper({ name, items }) {
   const navigate = useNavigate();
-  const [showTitle, setShowTitle] = useState(false);
-  console.log(showTitle);
+  console.log(name);
   return (
     <>
-      <Typography>Popular Movies</Typography>
+      <Typography sx={{ color: "#FB2576", marginTop: "10px" }} variant="h3">
+        {name} Movies
+      </Typography>
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={[Navigation]}
         breakpoints={{
-          320: { slidesPerView: 2, spaceBetween: 10 },
-          480: { slidesPerView: 3, spaceBetween: 10 },
+          320: { slidesPerView: 1, spaceBetween: 10 },
+          480: { slidesPerView: 1, spaceBetween: 10 },
           768: { slidesPerView: 3, spaceBetween: 10 },
           1024: { slidesPerView: 5, spaceBetween: 10 },
         }}
-        pagination={{ clickable: true }}
         navigation
+        centeredSlides={true}
+        loop={true}
         style={style.swiper}>
         {items &&
           items.length > 0 &&
           items.map((item, index) => (
-            <SwiperSlide>
+            <SwiperSlide style={{ padding: "5px" }}>
               <Card
                 onClick={() => navigate(`/movie/${item.id}`)}
-                className="netflix-container"
-                onMouseOver={() => setShowTitle(true)}
-                onMouseOut={() => setShowTitle(false)}>
+                className="netflix-container">
                 <CardMedia
                   className="netflix-items"
-                  sx={{ position: "absolute" }}
+                  sx={{
+                    position: "absolute",
+                    maxHeight: "500px",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
                   component="img"
+                  id={item.id}
                   image={`${IMG_URL}${item.backdrop_path}`}
                 />
-                {showTitle && (
-                  <Box style={style.title}>
-                    <Typography key={item.id} sx={{ color: "white" }}>
-                      {item.title ? item.title : item.name}
-                    </Typography>
-                  </Box>
-                )}{" "}
+                <Box className="hide" style={style.title}>
+                  <Typography>{item.title ? item.title : item.name}</Typography>
+                </Box>
               </Card>
             </SwiperSlide>
           ))}
@@ -77,4 +76,4 @@ function PopularMovie({ items }) {
   );
 }
 
-export default PopularMovie;
+export default MovieSwiper;

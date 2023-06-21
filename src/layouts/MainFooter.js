@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 function MainFooter() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" p={1}>
+    <Typography variant="body2" sx={{ color: "white" }} align="center" p={1}>
       {"Copyright © "}
-      <Link color="inherit" href="https://github.com/laclac102">
+      <Link style={{ color: "#FB2576" }} href="https://github.com/laclac102">
         XingauLag
       </Link>{" "}
       {new Date().getFullYear()}
