@@ -67,7 +67,7 @@ function HomePage() {
         width: "100%",
         padding: "3%",
       }}>
-      <TrendingCard items={trending} />
+      <TrendingCard items={trending} style={{ maxWidth: "100%" }} />
       <GenresSwiper items={genres} style={{ maxWidth: "100%" }} />
       <MovieSwiper
         name="Popular"

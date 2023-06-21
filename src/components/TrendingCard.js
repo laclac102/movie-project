@@ -30,32 +30,29 @@ function TrendingCard({ items }) {
   const navigate = useNavigate();
   const [showTitle, setShowTitle] = useState(false);
   return (
-    <>
-      <Carousel sx={{ minWidth: "500px", minHeight: "300px" }}>
-        {items &&
-          items.length > 0 &&
-          items.map((item, index) => (
-            <Card onClick={() => navigate(`/movie/${item.id}`)}>
-              <CardActionArea>
-                <StyledCard sx={{ position: "relative" }}>
-                  <CardMedia
-                    component="img"
-                    minHeight="500"
-                    image={`${IMG_URL}${item.backdrop_path}`}
-                    onMouseOver={() => setShowTitle(true)}
-                    onMouseOut={() => setShowTitle(false)}
-                  />
-                  {showTitle && (
-                    <Box style={style.title}>
-                      <Typography variant="h5">{item.title}</Typography>
-                    </Box>
-                  )}{" "}
-                </StyledCard>
-              </CardActionArea>
-            </Card>
-          ))}
-      </Carousel>
-    </>
+    <Carousel sx={{ minWidth: "100%" }}>
+      {items &&
+        items.length > 0 &&
+        items.map((item, index) => (
+          <Card onClick={() => navigate(`/movie/${item.id}`)}>
+            <CardActionArea>
+              <StyledCard sx={{ position: "relative" }}>
+                <CardMedia
+                  component="img"
+                  image={`${IMG_URL}${item.backdrop_path}`}
+                  onMouseOver={() => setShowTitle(true)}
+                  onMouseOut={() => setShowTitle(false)}
+                />
+                {showTitle && (
+                  <Box style={style.title}>
+                    <Typography variant="h5">{item.title}</Typography>
+                  </Box>
+                )}{" "}
+              </StyledCard>
+            </CardActionArea>
+          </Card>
+        ))}
+    </Carousel>
   );
 }
 
