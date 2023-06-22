@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import apiService from "../api/apiService";
 import { API_KEY, IMG_URL } from "../api/config";
-import { Movie } from "@mui/icons-material";
 import {
   Card,
   CardActions,
@@ -13,25 +12,34 @@ import {
   Typography,
 } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import { Button } from "@mui/base";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Stack } from "@mui/system";
+import MovieSwiper from "../components/MovieSwiper";
+import notfound from "../404image.png";
 function DetailPage() {
   let params = useParams();
   const [loading, setLoading] = useState();
   const [movie, setMovie] = useState();
+  const [similar, setSimilar] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);
       try {
-        // Fetch top 5 trending movies
-        const data = await apiService.get(
+        // Fetch movie details
+        const detail = await apiService.get(
           `/movie/${params.id}?language=en-US&api_key=${API_KEY}`
         );
-        const movies = data.data;
+        const movies = detail.data;
         setMovie(movies);
+        //Fetch similar movies
+        const similarMovies = await apiService.get(
+          `/movie/${params.id}/similar?language=en-US&api_key=${API_KEY}`
+        );
+
+        const similarList = similarMovies.data.results;
+        setSimilar(similarList);
       } catch (error) {
         console.log(error.message);
       }
@@ -39,6 +47,7 @@ function DetailPage() {
     };
     fetch();
   }, []);
+  console.log(movie.backdrop_path);
   return (
     <Card
       sx={{
@@ -50,12 +59,19 @@ function DetailPage() {
         maxWidth: "100%",
       }}>
       <Card sx={{ backgroundColor: "transparent", position: "relative" }}>
-        <CardMedia
-          sx={{ maxHeight: "50vh", maxWidth: "100vh" }}
-          component="img"
-          image={movie && `${IMG_URL}${movie.backdrop_path}`}
-        />
-
+        {movie && movie.backdrop_path ? (
+          <CardMedia
+            sx={{ maxHeight: "50vh", maxWidth: "100vh" }}
+            component="img"
+            image={`${IMG_URL}${movie.backdrop_path}`}
+          />
+        ) : (
+          <CardMedia
+            sx={{ maxHeight: "50vh", maxWidth: "100vh" }}
+            component="img"
+            image={notfound}
+          />
+        )}
         <CardActions sx={{ position: "absolute", bottom: 0 }}>
           <IconButton>
             <PlayCircleIcon color="secondary" />
@@ -89,6 +105,15 @@ function DetailPage() {
           {movie && movie.overview}
         </Typography>
       </CardContent>
+      <MovieSwiper
+        name="You might like these"
+        items={similar}
+        style={{
+          maxWidth: "80%",
+          minHeight: "150px",
+          backgroundColor: "#111111ff",
+        }}
+      />
     </Card>
   );
 }

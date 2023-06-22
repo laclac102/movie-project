@@ -6,6 +6,7 @@ import apiService from "../api/apiService";
 import TrendingCard from "../components/TrendingCard";
 import MovieSwiper from "../components/MovieSwiper";
 import GenresSwiper from "../components/GenresSwiper";
+
 function HomePage() {
   const auth = useAuth();
   const [trending, setTrending] = useState();
@@ -65,24 +66,36 @@ function HomePage() {
         alignItems: "center",
         minHeight: "100vh",
         width: "100%",
-        padding: "3%",
+        padding: "5px",
       }}>
       <TrendingCard items={trending} style={{ maxWidth: "100%" }} />
       <GenresSwiper items={genres} style={{ maxWidth: "100%" }} />
       <MovieSwiper
         name="Popular"
         items={movieList}
-        style={{ maxWidth: "100%" }}
+        style={{
+          maxWidth: "100%",
+          minHeight: "150px",
+          backgroundColor: "#111111ff",
+        }}
       />
       <MovieSwiper
         name="Top Rated"
         items={topRated}
-        style={{ maxWidth: "100%" }}
+        style={{
+          maxWidth: "100%",
+          minHeight: "150px",
+          backgroundColor: "#111111ff",
+        }}
       />
       <MovieSwiper
         name="Upcoming"
         items={upcoming}
-        style={{ maxWidth: "100%" }}
+        style={{
+          maxWidth: "100%",
+          minHeight: "150px",
+          backgroundColor: "#111111ff",
+        }}
       />
     </div>
   );

@@ -13,11 +13,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const style = {
-  swiper: {
-    maxWidth: "100%",
-    minHeight: "150px",
-    backgroundColor: "#111111ff",
-  },
   title: {
     position: "absolute",
     width: "100%",
@@ -26,9 +21,8 @@ const style = {
     zIndex: 2,
   },
 };
-function MovieSwiper({ name, items }) {
+function MovieSwiper({ name, items, ...others }) {
   const navigate = useNavigate();
-  console.log(name);
   return (
     <>
       <Typography sx={{ color: "#FB2576", marginTop: "10px" }} variant="h3">
@@ -45,7 +39,7 @@ function MovieSwiper({ name, items }) {
         navigation
         centeredSlides={true}
         loop={true}
-        style={style.swiper}>
+        {...others}>
         {items &&
           items.length > 0 &&
           items.map((item, index) => (
