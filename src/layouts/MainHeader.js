@@ -7,16 +7,28 @@ import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Logo from "../components/Logo";
 import useAuth from "../hooks/useAuth";
-import { Avatar, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Avatar, InputAdornment, Stack } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FTextField, FormProvider } from "../components/form";
+import SearchIcon from "@mui/icons-material/Search";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { LoadingButton } from "@mui/lab";
 
 function MainHeader() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const auth = useAuth();
-  console.log(logout);
+  const methods = useForm();
+  const { handleSubmit } = methods;
+
   return (
-    <Box>
+    <FormProvider
+      methods={methods}
+      onSubmit={handleSubmit((q) => {
+        q.search ? navigate("/search/" + q.search) : navigate("/");
+      })}>
       <AppBar position="static">
         <Toolbar variant="dense">
           <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
@@ -25,6 +37,21 @@ function MainHeader() {
           <Typography variant="h6" component="div">
             Netflix & Chill
           </Typography>
+          <FTextField
+            name="search"
+            label="Seacrh"
+            sx={{ left: 10, maxWidth: 300 }}
+            size="small"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <LoadingButton type="submit">
+                    <SearchIcon color="secondary" />
+                  </LoadingButton>
+                </InputAdornment>
+              ),
+            }}
+          />
           <Box sx={{ flexGrow: 1 }} />
           <Stack direction="row" spacing={2} alignItems="center">
             <Avatar sx={{ bgcolor: "#FB2576" }}>
@@ -41,7 +68,7 @@ function MainHeader() {
           </Stack>
         </Toolbar>
       </AppBar>
-    </Box>
+    </FormProvider>
   );
 }
 

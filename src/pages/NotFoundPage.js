@@ -5,10 +5,13 @@ function NotFoundPage() {
   return (
     <Container sx={{ display: "flex", height: "100%", alignItems: "center" }}>
       <Box sx={{ maxWidth: 480, margin: "auto", textAlign: "center" }}>
-        <Typography variant="h4" paragraph>
+        <Typography
+          variant="h4"
+          paragraph
+          sx={{ color: "primary.contrastText" }}>
           Page not found!
         </Typography>
-        <Typography sx={{ color: "text.secondary", mb: "1rem" }}>
+        <Typography sx={{ color: "secondary.contrastText", mb: "1rem" }}>
           Sorry, we couldn’t find the page you requested.
         </Typography>
         <Button to="/" variant="contained" component={RouterLink}>

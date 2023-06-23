@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../api/config";
 import { Navigation } from "swiper";
-
+import notfound from "../404image.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { NoFoodRounded } from "@mui/icons-material";
+import { isEditable } from "@testing-library/user-event/dist/utils";
 
 const style = {
   title: {
@@ -23,6 +25,8 @@ const style = {
 };
 function MovieSwiper({ name, items, ...others }) {
   const navigate = useNavigate();
+  console.log("name: ", name);
+  console.log("items: ", items);
   return (
     <>
       <Typography sx={{ color: "#FB2576", marginTop: "10px" }} variant="h3">
@@ -57,7 +61,11 @@ function MovieSwiper({ name, items, ...others }) {
                   }}
                   component="img"
                   id={item.id}
-                  image={`${IMG_URL}${item.backdrop_path}`}
+                  image={
+                    item.backdrop_path
+                      ? `${IMG_URL}${item.backdrop_path}`
+                      : notfound
+                  }
                 />
                 <Box className="hide" style={style.title}>
                   <Typography>{item.title ? item.title : item.name}</Typography>

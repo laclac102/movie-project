@@ -1,6 +1,6 @@
 #root {
   background-color: #111111ff;
-  --swiper-theme-color: #FB2576;
+  --swiper-theme-color: #fb2576;
   --swiper-navigation-size: 35px;
   min-height: 100vh;
   overflow: scroll;
@@ -19,7 +19,7 @@
   position: relative;
 }
 .netflix-container .netflix-items:focus,
-.netflix-container .netflix-items:hover{
+.netflix-container .netflix-items:hover {
   transform: scale(1.25);
   z-index: 1;
 }
@@ -30,14 +30,18 @@
   top: 0;
 }
 .swiper {
-    padding: "10px";
-    max-width: "100%";
-    min-height: "200px";
-    background-color: "#111111ff";
+  padding: "10px";
+  max-width: "100%";
+  min-height: "200px";
+  background-color: "#111111ff";
 }
 .genres {
-  background: rgb(121,78,97);
-  background: radial-gradient(circle, rgba(121,78,97,1) 0%, rgba(59,64,156,1) 100%);
+  background: rgb(121, 78, 97);
+  background: radial-gradient(
+    circle,
+    rgba(121, 78, 97, 1) 0%,
+    rgba(59, 64, 156, 1) 100%
+  );
 }
 @media only screen and (max-width: 600px) {
   #root {

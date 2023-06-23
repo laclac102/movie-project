@@ -46,8 +46,7 @@ function DetailPage() {
       setLoading(false);
     };
     fetch();
-  }, []);
-  console.log(movie.backdrop_path);
+  }, [params]);
   return (
     <Card
       sx={{
@@ -63,7 +62,7 @@ function DetailPage() {
           <CardMedia
             sx={{ maxHeight: "50vh", maxWidth: "100vh" }}
             component="img"
-            image={`${IMG_URL}${movie.backdrop_path}`}
+            image={movie && `${IMG_URL}${movie.backdrop_path}`}
           />
         ) : (
           <CardMedia
@@ -72,6 +71,7 @@ function DetailPage() {
             image={notfound}
           />
         )}
+
         <CardActions sx={{ position: "absolute", bottom: 0 }}>
           <IconButton>
             <PlayCircleIcon color="secondary" />
@@ -100,20 +100,26 @@ function DetailPage() {
             />
           ))}
       </Stack>
-      <CardContent sx={{ maxWidth: "100vh" }}>
+      <CardContent sx={{ maxWidth: "80%" }}>
         <Typography variant="body" color="secondary.contrastText">
           {movie && movie.overview}
         </Typography>
       </CardContent>
-      <MovieSwiper
-        name="You might like these"
-        items={similar}
-        style={{
-          maxWidth: "80%",
-          minHeight: "150px",
-          backgroundColor: "#111111ff",
-        }}
-      />
+      {similar && similar.length > 0 ? (
+        <MovieSwiper
+          name="You might like these"
+          items={similar}
+          style={{
+            maxWidth: "80%",
+            minHeight: "150px",
+            backgroundColor: "#111111ff",
+          }}
+        />
+      ) : (
+        <Typography variant="body" color="primary.contrastText">
+          No similar movies found
+        </Typography>
+      )}
     </Card>
   );
 }
