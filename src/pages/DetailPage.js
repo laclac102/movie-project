@@ -56,6 +56,7 @@ function DetailPage() {
         flexDirection: "column",
         alignItems: "center",
         maxWidth: "100%",
+        padding: "10px",
       }}>
       <Card sx={{ backgroundColor: "transparent", position: "relative" }}>
         {movie && movie.backdrop_path ? (
@@ -73,13 +74,15 @@ function DetailPage() {
         )}
 
         <CardActions sx={{ position: "absolute", bottom: 0 }}>
-          <IconButton>
+          <IconButton sx={{ backgroundColor: "#191825" }}>
             <PlayCircleIcon color="secondary" />
           </IconButton>
-          <IconButton aria-label="add to favorites">
+          <IconButton
+            sx={{ backgroundColor: "#191825" }}
+            aria-label="add to favorites">
             <AddCircleIcon color="secondary" />
           </IconButton>
-          <IconButton aria-label="like">
+          <IconButton sx={{ backgroundColor: "#191825" }} aria-label="like">
             <ThumbUpIcon color="secondary" />
           </IconButton>
         </CardActions>
@@ -100,7 +103,7 @@ function DetailPage() {
             />
           ))}
       </Stack>
-      <CardContent sx={{ maxWidth: "80%" }}>
+      <CardContent sx={{ maxWidth: "100vh" }}>
         <Typography variant="body" color="secondary.contrastText">
           {movie && movie.overview}
         </Typography>
@@ -110,9 +113,9 @@ function DetailPage() {
           name="You might like these"
           items={similar}
           style={{
-            maxWidth: "80%",
-            minHeight: "150px",
-            backgroundColor: "#111111ff",
+            maxWidth: "100vh",
+            height: "20vh",
+            backgroundColor: "#171b20",
           }}
         />
       ) : (

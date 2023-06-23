@@ -1,9 +1,9 @@
 #root {
-  background-color: #111111ff;
+  background-color: #171b20;
   --swiper-theme-color: #fb2576;
   --swiper-navigation-size: 35px;
   min-height: 100vh;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 .hide {
   display: none;
@@ -33,7 +33,7 @@
   padding: "10px";
   max-width: "100%";
   min-height: "200px";
-  background-color: "#111111ff";
+  background-color: "#171b20";
 }
 .genres {
   background: rgb(121, 78, 97);

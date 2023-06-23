@@ -7,7 +7,7 @@ import {
 const PRIMARY = {
   lighter: "#20262E",
   light: "#20262E",
-  main: "#000000",
+  main: "#171b20",
   dark: "#20262E",
   darker: "#20262E",
   contrastText: "#FB2576",
@@ -46,6 +46,17 @@ function ThemeProvider({ children }) {
         breakpoints: {
           up: {
             fontSize: "2.rem",
+          },
+        },
+      },
+      h2: {
+        fontSize: "2.5rem",
+        "@media (max-width:400px)": {
+          fontSize: "2rem",
+        },
+        breakpoints: {
+          up: {
+            fontSize: "2rem",
           },
         },
       },

@@ -35,8 +35,8 @@ function MovieSwiper({ name, items, ...others }) {
       <Swiper
         modules={[Navigation]}
         breakpoints={{
-          320: { slidesPerView: 1, spaceBetween: 10 },
-          480: { slidesPerView: 1, spaceBetween: 10 },
+          320: { slidesPerView: 2, spaceBetween: 10 },
+          480: { slidesPerView: 2, spaceBetween: 10 },
           768: { slidesPerView: 3, spaceBetween: 10 },
           1024: { slidesPerView: 5, spaceBetween: 10 },
         }}

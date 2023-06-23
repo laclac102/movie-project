@@ -17,7 +17,7 @@ const style = {
     padding: "10px",
     maxWidth: "100%",
     minHeight: "150px",
-    backgroundColor: "#111111ff",
+    backgroundColor: "#171b20",
   },
 };
 function GenresSwiper({ items }) {

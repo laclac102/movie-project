@@ -8,14 +8,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Logo from "../components/Logo";
 import useAuth from "../hooks/useAuth";
 import { Avatar, InputAdornment, Stack } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FTextField, FormProvider } from "../components/form";
 import SearchIcon from "@mui/icons-material/Search";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { LoadingButton } from "@mui/lab";
-
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 function MainHeader() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -24,36 +22,45 @@ function MainHeader() {
   const { handleSubmit } = methods;
 
   return (
-    <FormProvider
-      methods={methods}
-      onSubmit={handleSubmit((q) => {
-        q.search ? navigate("/search/" + q.search) : navigate("/");
-      })}>
+    <Box>
       <AppBar position="static">
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" sx={{ padding: "5px" }}>
+          <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
+            <KeyboardReturnIcon
+              sx={{ color: "#FB2576" }}
+              onClick={() => navigate(-1)}
+            />
+          </IconButton>
           <IconButton edge="start" aria-label="menu" sx={{ mr: 2 }}>
             <Logo />
           </IconButton>
-          <Typography variant="h6" component="div">
+          <Typography variant="h7" component="div">
             Netflix & Chill
           </Typography>
-          <FTextField
-            name="search"
-            label="Seacrh"
-            sx={{ left: 10, maxWidth: 300 }}
-            size="small"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <LoadingButton type="submit">
-                    <SearchIcon color="secondary" />
-                  </LoadingButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Box sx={{ flexGrow: 1 }} />
-          <Stack direction="row" spacing={2} alignItems="center">
+          <FormProvider
+            methods={methods}
+            onSubmit={handleSubmit((q) => {
+              q.search ? navigate("/search/" + q.search) : navigate("/");
+            })}>
+            <FTextField
+              name="search"
+              label="Seacrh"
+              sx={{ left: 10, maxWidth: 300, input: { color: "white" } }}
+              size="small"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <LoadingButton type="submit">
+                      <SearchIcon color="secondary" />
+                    </LoadingButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </FormProvider>
+          <Box sx={{ flexGrow: 1, width: "20px" }} />
+
+          <Stack direction="row" spacing={1} alignItems="center">
             <Avatar sx={{ bgcolor: "#FB2576" }}>
               {user?.username.charAt(0).toUpperCase()}
             </Avatar>
@@ -68,7 +75,7 @@ function MainHeader() {
           </Stack>
         </Toolbar>
       </AppBar>
-    </FormProvider>
+    </Box>
   );
 }
 

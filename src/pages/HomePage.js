@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import { API_KEY } from "../api/config";
 import apiService from "../api/apiService";
 import TrendingCard from "../components/TrendingCard";
