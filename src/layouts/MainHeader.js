@@ -14,6 +14,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import QueueIcon from "@mui/icons-material/Queue";
+
 function MainHeader() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -64,6 +66,10 @@ function MainHeader() {
             <Avatar sx={{ bgcolor: "#FB2576" }}>
               {user?.username.charAt(0).toUpperCase()}
             </Avatar>
+            <QueueIcon
+              sx={{ width: "20px" }}
+              onClick={() => navigate("/favorite")}
+            />
             <LogoutIcon
               color="secondary"
               variant="outlined"

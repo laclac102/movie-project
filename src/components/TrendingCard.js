@@ -34,7 +34,7 @@ function TrendingCard({ items }) {
       {items &&
         items.length > 0 &&
         items.map((item, index) => (
-          <Card onClick={() => navigate(`/movie/${item.id}`)}>
+          <Card>
             <CardActionArea>
               <StyledCard sx={{ position: "relative" }}>
                 <CardMedia
@@ -42,6 +42,7 @@ function TrendingCard({ items }) {
                   image={`${IMG_URL}${item.backdrop_path}`}
                   onMouseOver={() => setShowTitle(true)}
                   onMouseOut={() => setShowTitle(false)}
+                  onClick={() => navigate(`/movie/${item.id}`)}
                 />
                 {showTitle && (
                   <Box style={style.title}>

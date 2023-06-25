@@ -22,7 +22,6 @@ const style = {
 };
 function GenresSwiper({ items }) {
   const navigate = useNavigate();
-  console.log("genres", items);
   return (
     <>
       <Typography sx={{ color: "#FB2576" }} variant="h3">

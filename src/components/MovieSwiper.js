@@ -25,8 +25,7 @@ const style = {
 };
 function MovieSwiper({ name, items, ...others }) {
   const navigate = useNavigate();
-  console.log("name: ", name);
-  console.log("items: ", items);
+
   return (
     <>
       <Typography sx={{ color: "#FB2576", marginTop: "10px" }} variant="h3">

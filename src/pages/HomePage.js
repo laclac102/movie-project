@@ -15,6 +15,7 @@ function HomePage() {
   const [upcoming, setUpcoming] = useState();
   const [genres, setGenres] = useState();
   const [loading, setLoading] = useState(true);
+  const [fav, setFav] = useState();
   const [page, setPage] = useState(1);
   useEffect(() => {
     const fetch = async () => {
@@ -45,8 +46,21 @@ function HomePage() {
           `/genre/movie/list?language=en&api_key=${API_KEY}`
         );
         const genresLists = genresList.data.genres;
-        console.log("genreslist", genresLists);
         setGenres(genresLists);
+        //Fetch favorite list
+        const favorite = await apiService.get(
+          `/account/20024063/favorite/movies?language=en-USpage=${page}`,
+          {
+            headers: {
+              accept: "application/json",
+              "content-type": "application/json",
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZWU3MzBmZjQ5ZWEzNmU0MjcxYjA0NzkyZDg0M2IwYSIsInN1YiI6IjY0OGQ1NDYyNTU5ZDIyMDBhZDgxZDUyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QQEI7vSospxCzaxNtKVqm9CvyjKz_pzKmkatm1LZVAM",
+            },
+          }
+        );
+        const favList = favorite.data.results;
+        setFav(favList);
       } catch (error) {
         console.log(error.message);
       }
@@ -57,7 +71,6 @@ function HomePage() {
   if (!auth.user) {
     return <p>You are not logged in.</p>;
   }
-
   return (
     <div
       style={{
@@ -71,6 +84,18 @@ function HomePage() {
       }}>
       <TrendingCard items={trending} style={{ maxWidth: "100%" }} />
       <GenresSwiper items={genres} style={{ maxWidth: "100%" }} />
+      {fav && fav.length > 0 && (
+        <MovieSwiper
+          name="You Favorite"
+          items={fav}
+          style={{
+            width: "100%",
+            minHeight: "150px",
+            backgroundColor: "#111111ff",
+          }}
+        />
+      )}
+
       <MovieSwiper
         name="Popular"
         items={movieList}

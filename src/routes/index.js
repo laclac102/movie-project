@@ -23,6 +23,7 @@ function Router() {
         <Route path="movie/:id" element={<DetailPage />} />
         <Route path="search/:q" element={<SearchPage />} />
         <Route path="genres/:genre" element={<SearchPage />} />
+        <Route path="favorite/" element={<SearchPage />} />
       </Route>
 
       <Route element={<BlankLayout />}>
