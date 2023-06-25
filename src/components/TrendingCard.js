@@ -30,7 +30,7 @@ function TrendingCard({ items }) {
   const navigate = useNavigate();
   const [showTitle, setShowTitle] = useState(false);
   return (
-    <Carousel sx={{ width: "90%" }}>
+    <Carousel sx={{ width: "80%" }}>
       {items &&
         items.length > 0 &&
         items.map((item, index) => (

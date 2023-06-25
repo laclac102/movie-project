@@ -45,7 +45,10 @@ function LoginPage() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3} sx={{ minWidth: "350px" }}>
-        <Typography variant="h4" textAlign="center">
+        <Typography
+          variant="h4"
+          textAlign="center"
+          sx={{ color: "primary.contrastText" }}>
           Login
         </Typography>
         <FTextField name="username" label="Username" />
