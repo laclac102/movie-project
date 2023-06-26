@@ -67,34 +67,8 @@ function DetailPage() {
       setLoading(false);
     };
     fetch();
-  }, [params]);
-  useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        //Fetch favorite list
-        const favorite = await apiService.get(
-          `/account/20024063/favorite/movies?language=en-US`,
-          {
-            headers: {
-              accept: "application/json",
-              "content-type": "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZWU3MzBmZjQ5ZWEzNmU0MjcxYjA0NzkyZDg0M2IwYSIsInN1YiI6IjY0OGQ1NDYyNTU5ZDIyMDBhZDgxZDUyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QQEI7vSospxCzaxNtKVqm9CvyjKz_pzKmkatm1LZVAM",
-            },
-          }
-        );
-        const favList = favorite.data.results;
-        const add = favList.find((item, index) => item.id === params.id);
-        add ? setAdded(true) : setAdded(false);
-      } catch (error) {
-        console.log(error.message);
-        setError(error.message);
-      }
-      setLoading(false);
-    };
-    fetch();
-  });
+  }, []);
+
   const addFavorite = async () => {
     try {
       if (added) {

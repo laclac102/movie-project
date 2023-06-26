@@ -96,7 +96,7 @@ function MainHeader() {
       }
     };
     fetch();
-  });
+  }, []);
   //Responsive menu
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
