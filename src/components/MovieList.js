@@ -36,7 +36,7 @@ function MovieList({ id }) {
       }
     };
     fetch();
-  }, []);
+  }, [id]);
   return (
     <>
       <Card

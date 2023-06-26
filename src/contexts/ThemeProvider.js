@@ -28,6 +28,14 @@ const SUCCESS = {
   darker: "#08660D",
   contrastText: "#FFF",
 };
+const NOTI = {
+  lighter: "#270082",
+  light: "#270082",
+  main: "#FFF",
+  dark: "#270082",
+  darker: "#270082",
+  contrastText: "#270082",
+};
 
 function ThemeProvider({ children }) {
   const themeOptions = {
@@ -35,6 +43,7 @@ function ThemeProvider({ children }) {
       primary: PRIMARY,
       secondary: SECONDARY,
       success: SUCCESS,
+      noti: NOTI,
     },
     shape: { borderRadius: 2 },
     typography: {

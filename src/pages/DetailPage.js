@@ -94,7 +94,7 @@ function DetailPage() {
       setLoading(false);
     };
     fetch();
-  }, [added]);
+  });
   const addFavorite = async () => {
     try {
       if (added) {
@@ -179,7 +179,7 @@ function DetailPage() {
                   <IconButton
                     sx={{ backgroundColor: "#191825" }}
                     aria-label="add to favorites">
-                    {added == true ? (
+                    {added === true ? (
                       <PlaylistAddCheckIcon
                         color="secondary"
                         onClick={addFavorite}

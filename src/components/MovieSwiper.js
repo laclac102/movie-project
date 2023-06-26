@@ -1,5 +1,5 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Card, CardMedia, Typography } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../api/config";
 import { Navigation } from "swiper";
@@ -11,8 +11,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { NoFoodRounded } from "@mui/icons-material";
-import { isEditable } from "@testing-library/user-event/dist/utils";
 
 const style = {
   title: {

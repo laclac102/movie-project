@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
 import { Box, Container, Grid, Typography, Button, Alert } from "@mui/material";
@@ -13,7 +13,6 @@ function SearchPage() {
   const [loading, setLoading] = useState();
   const [result, setResult] = useState();
   const [error, setError] = useState();
-  console.log("params: ", params);
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);
@@ -56,7 +55,6 @@ function SearchPage() {
     };
     fetch();
   }, [params]);
-  console.log("rwsultsLL ", result);
   return (
     <>
       {loading ? (

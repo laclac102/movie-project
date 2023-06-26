@@ -1,7 +1,6 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Card, CardContent, Typography } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { IMG_URL } from "../api/config";
 import { Navigation } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
