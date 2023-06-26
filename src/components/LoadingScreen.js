@@ -12,7 +12,7 @@ function LoadingScreen() {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <CircularProgress />
+      <CircularProgress color="secondary" />
     </Box>
   );
 }

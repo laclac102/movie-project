@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../api/apiService";
 import { API_KEY } from "../api/config";
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Box, Container, Grid, Typography, Button, Alert } from "@mui/material";
 import MovieList from "../components/MovieList";
 
 import { Link as RouterLink } from "react-router-dom";
+import LoadingScreen from "../components/LoadingScreen";
 
 function SearchPage() {
   let params = useParams();
   const [loading, setLoading] = useState();
   const [result, setResult] = useState();
+  const [error, setError] = useState();
   console.log("params: ", params);
   useEffect(() => {
     const fetch = async () => {
@@ -48,6 +50,7 @@ function SearchPage() {
         }
       } catch (error) {
         console.log(error.message);
+        setError(error.message);
       }
       setLoading(false);
     };
@@ -56,31 +59,47 @@ function SearchPage() {
   console.log("rwsultsLL ", result);
   return (
     <>
-      {result ? (
-        <Grid container spacing={3} mt={1} sx={{ padding: "5px" }}>
-          {result.map((item, index) => (
-            <Grid key={item.id} item xs={6} md={4} lg={3}>
-              <MovieList id={item.id} />
-            </Grid>
-          ))}
-        </Grid>
+      {loading ? (
+        <LoadingScreen />
       ) : (
-        <Container
-          sx={{ display: "flex", height: "100%", alignItems: "center" }}>
-          <Box sx={{ maxWidth: 480, margin: "auto", textAlign: "center" }}>
-            <Typography
-              variant="h4"
-              paragraph
-              sx={{ color: "primary.contrastText" }}>
-              There is no movies avaible!
-            </Typography>
-            <Button to="/" variant="contained" component={RouterLink}>
-              Go to Home
-            </Button>
-          </Box>
-        </Container>
+        <>
+          {error ? (
+            <Alert severity="error">{error}</Alert>
+          ) : (
+            <>
+              {result ? (
+                <Grid container spacing={3} mt={1} sx={{ padding: "5px" }}>
+                  {result.map((item, index) => (
+                    <Grid key={item.id} item xs={6} md={4} lg={3}>
+                      <MovieList id={item.id} />
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <Container
+                  sx={{
+                    display: "flex",
+                    height: "100%",
+                    alignItems: "center",
+                  }}>
+                  <Box
+                    sx={{ maxWidth: 480, margin: "auto", textAlign: "center" }}>
+                    <Typography
+                      variant="h4"
+                      paragraph
+                      sx={{ color: "primary.contrastText" }}>
+                      There is no movies avaible!
+                    </Typography>
+                    <Button to="/" variant="contained" component={RouterLink}>
+                      Go to Home
+                    </Button>
+                  </Box>
+                </Container>
+              )}
+            </>
+          )}
+        </>
       )}
-      =
     </>
   );
 }

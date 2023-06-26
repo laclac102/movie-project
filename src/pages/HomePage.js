@@ -5,7 +5,8 @@ import apiService from "../api/apiService";
 import TrendingCard from "../components/TrendingCard";
 import MovieSwiper from "../components/MovieSwiper";
 import GenresSwiper from "../components/GenresSwiper";
-import { Pagination } from "@mui/material";
+import { Alert, Pagination } from "@mui/material";
+import LoadingScreen from "../components/LoadingScreen";
 
 function HomePage() {
   const auth = useAuth();
@@ -17,6 +18,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [fav, setFav] = useState();
   const [page, setPage] = useState(1);
+  const [error, setError] = useState();
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);
@@ -63,6 +65,7 @@ function HomePage() {
         setFav(favList);
       } catch (error) {
         console.log(error.message);
+        setError(error.message);
       }
       setLoading(false);
     };
@@ -82,57 +85,69 @@ function HomePage() {
         width: "100%",
         padding: "5px",
       }}>
-      <TrendingCard items={trending} style={{ maxWidth: "100%" }} />
-      <GenresSwiper items={genres} style={{ maxWidth: "100%" }} />
-      {fav && fav.length > 0 && (
-        <MovieSwiper
-          name="You Favorite"
-          items={fav}
-          style={{
-            width: "100%",
-            minHeight: "150px",
-            backgroundColor: "#111111ff",
-          }}
-        />
-      )}
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          {error ? (
+            <Alert severity="error">{error}</Alert>
+          ) : (
+            <>
+              <TrendingCard items={trending} style={{ maxWidth: "100%" }} />
+              <GenresSwiper items={genres} style={{ maxWidth: "100%" }} />
+              {fav && fav.length > 0 && (
+                <MovieSwiper
+                  name="You Favorite"
+                  items={fav}
+                  style={{
+                    width: "100%",
+                    minHeight: "150px",
+                    backgroundColor: "#111111ff",
+                  }}
+                />
+              )}
 
-      <MovieSwiper
-        name="Popular"
-        items={movieList}
-        style={{
-          maxWidth: "100%",
-          minHeight: "150px",
-          backgroundColor: "#111111ff",
-        }}
-      />
-      <MovieSwiper
-        name="Top Rated"
-        items={topRated}
-        style={{
-          maxWidth: "100%",
-          minHeight: "150px",
-          backgroundColor: "#111111ff",
-        }}
-      />
-      <MovieSwiper
-        name="Upcoming"
-        items={upcoming}
-        style={{
-          maxWidth: "100%",
-          minHeight: "150px",
-          backgroundColor: "#111111ff",
-        }}
-      />
-      <Pagination
-        count={10}
-        variant="text"
-        color="primary"
-        sx={{
-          padding: "10px",
-          color: "white",
-        }}
-        onChange={(e, v) => setPage(v)}
-      />
+              <MovieSwiper
+                name="Popular"
+                items={movieList}
+                style={{
+                  maxWidth: "100%",
+                  minHeight: "150px",
+                  backgroundColor: "#111111ff",
+                }}
+              />
+              <MovieSwiper
+                name="Top Rated"
+                items={topRated}
+                style={{
+                  maxWidth: "100%",
+                  minHeight: "150px",
+                  backgroundColor: "#111111ff",
+                }}
+              />
+              <MovieSwiper
+                name="Upcoming"
+                items={upcoming}
+                style={{
+                  maxWidth: "100%",
+                  minHeight: "150px",
+                  backgroundColor: "#111111ff",
+                }}
+              />
+              <Pagination
+                count={10}
+                variant="text"
+                color="primary"
+                sx={{
+                  padding: "10px",
+                  color: "white",
+                }}
+                onChange={(e, v) => setPage(v)}
+              />
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }
