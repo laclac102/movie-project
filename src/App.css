@@ -43,6 +43,9 @@
     rgba(59, 64, 156, 1) 100%
   );
 }
+button.MuiButtonBase-root, div.MuiPaginationItem-root {
+  color: white
+}
 @media only screen and (max-width: 600px) {
   #root {
     --swiper-navigation-size: 25px;
